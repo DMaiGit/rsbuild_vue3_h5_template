@@ -1,0 +1,95 @@
+/* 重置样式和基础样式 */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* 继承自html的box-sizing */
+  -webkit-user-select: none; /* 禁止用户选择文本 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+  box-sizing: border-box; /* 设置为border-box */
+  height: 100%; /* 统一在html上设置宽高100% */
+  font-family: 'HanSans', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  width: 100%; /* body继承自html的100%宽度 */
+  min-height: 100%; /* 设置最小高度100% */
+  overflow: hidden; /* 隐藏滚动条 */
+  color: #333;
+  font-size: 24px;
+  line-height: 33px;
+  -moz-osx-font-smoothing: grayscale; /* 重复声明，可以合并 */
+  -webkit-font-smoothing: antialiased; /* 重复声明，已合并 */
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 链接样式 */
+a,
+a:focus,
+a:hover {
+  cursor: pointer; /* 指针光标样式 */
+  color: inherit; /* 继承颜色 */
+  text-decoration: none; /* 无下划线 */
+  outline: none; /* 点击时无轮廓 */
+}
+
+/* 输入框可选择 */
+input,
+textarea {
+  -webkit-user-select: auto; /* WebKit浏览器下可选择 */
+  user-select: auto; /* 标准方式 */
+}
+
+/* 图片和表单元素样式 */
+fieldset,
+img {
+  width: 100%;
+  height: auto;
+  border: 0;
+  vertical-align: middle;
+}
+
+/* 加粗文字样式 */
+b {
+  color: black;
+  font-weight: bolder;
+}
+
+/* 占位符样式 */
+::-webkit-input-placeholder {
+  color: #BFBFBF;
+}
+
+/* 其他元素重置 */
+body,
+h1, h2, h3, h4, h5, h6,
+hr, p, span, i,
+section, article,
+blockquote, dl, dt, dd,
+ul, ol, li,
+pre, form, fieldset,
+legend, button, label,
+th, td, div,
+header, footer, nav,
+address, cite, dfn, var, table {
+  /* 统一的box-sizing和字体抗锯齿已在上面的通配符中定义 */
+  font-weight: normal;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 非占位文本输入样式 */
+button, input, select {
+  /* 出现样式和字体家族已在上面定义 */
+  font-family: inherit; /* 继承字体样式 */
+}

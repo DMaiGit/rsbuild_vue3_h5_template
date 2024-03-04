@@ -1,0 +1,54 @@
+{
+  "name": "rsbuild_vue3_h5_template",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "dev-debug": "cross-env DEBUG=rsbuild pnpm dev",
+    "build": "vue-tsc --noEmit && rsbuild build",
+    "build-debug": "vue-tsc --noEmit && cross-env DEBUG=rsbuild pnpm build",
+    "preview": "rsbuild preview",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "commit": "git add . && cz"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "pinia": "^2.1.7",
+    "vant": "^4.8.5",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@commitlint/cz-commitlint": "^17.4.2",
+    "@commitlint/format": "^17.8.1",
+    "@rsbuild/core": "^0.4.6",
+    "@rsbuild/plugin-assets-retry": "^0.4.6",
+    "@rsbuild/plugin-babel": "^0.4.6",
+    "@rsbuild/plugin-check-syntax": "^0.4.6",
+    "@rsbuild/plugin-eslint": "^0.4.8",
+    "@rsbuild/plugin-image-compress": "^0.4.6",
+    "@rsbuild/plugin-rem": "^0.4.6",
+    "@rsbuild/plugin-type-check": "^0.4.6",
+    "@rsbuild/plugin-vue": "^0.4.6",
+    "@rsbuild/plugin-vue-jsx": "^0.4.6",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@vant/auto-import-resolver": "^1.0.2",
+    "axios-mock-adapter": "^1.22.0",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "eslint-plugin-vue": "^9.22.0",
+    "husky": "^9.0.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vue-tsc": "^1.8.27"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  }
+}
