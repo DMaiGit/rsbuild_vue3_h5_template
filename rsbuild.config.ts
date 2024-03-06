@@ -1,17 +1,17 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginCheckSyntax } from '@rsbuild/plugin-check-syntax';
-import type { PluginCheckSyntaxOptions } from '@rsbuild/plugin-check-syntax';
 import { pluginBabel } from '@rsbuild/plugin-babel';
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx';
 import { pluginAssetsRetry } from '@rsbuild/plugin-assets-retry';
 import { pluginTypeCheck } from '@rsbuild/plugin-type-check';
 import { pluginImageCompress } from '@rsbuild/plugin-image-compress';
 import { pluginRem } from '@rsbuild/plugin-rem';
-import type { PluginRemOptions } from '@rsbuild/plugin-rem';
-import Components from "unplugin-vue-components/rspack";
 import { VantResolver } from "@vant/auto-import-resolver";
 import { pluginEslint } from '@rsbuild/plugin-eslint';
+import Components from "unplugin-vue-components/rspack";
+import type { PluginCheckSyntaxOptions } from '@rsbuild/plugin-check-syntax';
+import type { PluginRemOptions } from '@rsbuild/plugin-rem';
 
 /** 浏览器高级语法兼容参数 */
 const checkSyntaxOptions: PluginCheckSyntaxOptions = {
@@ -43,7 +43,7 @@ const remOptions: PluginRemOptions = {
   }
 }
 const assetsCdn = {
-  js: process.env.NODE_ENV === 'production'? []: [],
+  js: [process.env.ESHIMIN_JS_SDK, process.env.UMENG_JS_SDK],
   css: []
 }
 
@@ -52,7 +52,7 @@ export default defineConfig({
     pluginVue(),
     pluginCheckSyntax(checkSyntaxOptions),
     pluginBabel({ // swc配置
-      include: /\.(?:jsx|tsx)$/,
+      include: /\.(?:jsx|tsx|js)$/,
       exclude: /[\\/]node_modules[\\/]/,
     }),
     pluginVueJsx({ vueJsxOptions: vueJsxOptions }), // 开启vue-jsx支持
@@ -65,9 +65,9 @@ export default defineConfig({
         }
       }
     }),
-    pluginImageCompress([{ use: 'jpeg', test: /\.(?:jpg|jpeg|jpe)$/}, 'pngLossless', 'ico']), // 静态资源压缩
+    pluginImageCompress([{ use: 'jpeg', test: /\.(?:jpg|jpeg|jpe)$/ }, 'pngLossless', 'ico']), // 静态资源压缩
     pluginRem(remOptions),
-    pluginEslint({enable: process.env.NODE_ENV === 'development'})
+    pluginEslint({ enable: process.env.NODE_ENV === 'development' })
   ],
   tools: {
     rspack(config, { addRules, prependPlugins }) {
@@ -77,6 +77,12 @@ export default defineConfig({
           // 将资源转换为单独的文件，并且导出产物地址
           type: 'assets/resource',
         },
+        // {
+        //   test: /\.svg$/,
+        //   loader: 'svg-sprite-loader',
+        //   type: 'assets/icons/svg',
+        //   options: { symbolId: 'icon-[name]' }
+        // }
       ]);
       prependPlugins(Components({
         resolvers: [VantResolver()],
@@ -85,6 +91,7 @@ export default defineConfig({
   },
   source: {
     alias: { // 路径别名
+      '@/*': './src/*',
       '@styles': './src/styles',
       '@stores': './src/stores',
       '@types': './src/@types',
