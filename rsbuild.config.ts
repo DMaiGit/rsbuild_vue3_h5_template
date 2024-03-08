@@ -77,12 +77,6 @@ export default defineConfig({
           // 将资源转换为单独的文件，并且导出产物地址
           type: 'assets/resource',
         },
-        // {
-        //   test: /\.svg$/,
-        //   loader: 'svg-sprite-loader',
-        //   type: 'assets/icons/svg',
-        //   options: { symbolId: 'icon-[name]' }
-        // }
       ]);
       prependPlugins(Components({
         resolvers: [VantResolver()],
